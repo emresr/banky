@@ -1,15 +1,18 @@
 import Header from "./header";
-import Header1 from "./header1";
+import Sidebar from "./sidebar";
 import Image from "next/image";
 
 function Layout({ children }) {
-  return (
-    <div className="h-screen flex flex-col h-screen justify-between">
-      <Header1 />
-      <main className="container shadow-lg mx-auto bg-white mt-24 md:mt-18">
-        {children}
-      </main>
-    </div>
-  );
+   return (
+      <div className="">
+         <Header />
+         <main className="grid grid-cols-12 bg-green-700 h-screen">
+            <div className="col-span-3">
+               <Sidebar />
+            </div>
+            <div className="col-span-9"> {children}</div>{" "}
+         </main>
+      </div>
+   );
 }
 export default Layout;
