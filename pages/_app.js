@@ -1,7 +1,19 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
+import {
+   ApolloProvider,
+   ApolloClient,
+   InMemoryCache,
+   HttpLink,
+} from "@apollo/client";
+import { wrapper } from "../redux/store";
+import getClient from "../apollo/apollo";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+   return (
+      <ApolloProvider client={getClient()}>
+         <Component {...pageProps} />
+      </ApolloProvider>
+   );
 }
 
-export default MyApp
+export default wrapper.withRedux(MyApp);

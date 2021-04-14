@@ -1,0 +1,72 @@
+type Query {
+   me: User!
+   users: [User!]!
+   user(id: ID!): User!
+   accounts: [Account!]!
+   account(id: ID!): Account!
+   cards: [Card!]!
+   card(id: ID!): Card!
+   transactions: [Transaction!]!
+   transaction(id: ID!): Transaction!
+}
+type Mutation {
+   signup(email: String!, password: String!): AuthPayload
+   login(email: String!, password: String!): AuthPayload
+   updateUser(id: ID!, email: String!, name: String): User!
+   deleteUser(id: ID!): User!
+
+   #account
+   createAccount: Account!
+   updateAccount(accountId: ID!, iban: String!): Account!
+   #transaction
+   createTransaction(
+      senderId: ID!
+      receiverId: ID!
+      amount: Float!
+   ): Transaction!
+
+   #card
+   createCard(accountId: ID!): Card!
+}
+
+scalar DateTime
+
+type User {
+   id: ID!
+   email: String!
+   name: String
+   createdAt: DateTime!
+   accounts: [Account!]
+   total: Float
+}
+type AuthPayload {
+   token: String
+   user: User
+}
+type Account {
+   id: ID!
+   name: String!
+   iban: String!
+   user: User
+   userId: Int
+   cards: [Card!]
+   sended: [Transaction!]
+   received: [Transaction!]
+   balance: Float
+}
+type Card {
+   id: ID!
+   name: String
+   account: Account
+   accountId: Int
+}
+
+type Transaction {
+   id: ID!
+   sender: Account
+   senderId: Int
+   receiver: Account
+   receiverId: Int
+   key: String
+   amount: Float
+}
