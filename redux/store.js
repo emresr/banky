@@ -3,9 +3,11 @@ import ReduxThunk from "redux-thunk";
 
 import { createWrapper, HYDRATE } from "next-redux-wrapper";
 import userReducer from "./reducers/userReducer";
+import cardReducer from "./reducers/cardReducer";
 
 const rootReducer = combineReducers({
    user: userReducer,
+   card: cardReducer,
 });
 
 const makeStore = (context) =>

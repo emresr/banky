@@ -6,7 +6,7 @@ function Layout({ children }) {
    return (
       <div className="">
          <Header />
-         <main className="grid grid-cols-12 bg-green-700 h-screen">
+         <main className="grid grid-cols-12  h-screen">
             <div className="col-span-3">
                <Sidebar />
             </div>
