@@ -18,6 +18,7 @@ const Account = () => {
       <Layout>
          <div className="mt-4 ml-3 ">
             {card.card && <h1 className="text-3xl">Mastercard</h1>}
+            <h1>Preferences atm-alşveris izinleri falan</h1>
          </div>
       </Layout>
    );

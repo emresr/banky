@@ -69,4 +69,6 @@ type Transaction {
    receiverId: Int
    key: String
    amount: Float
+   note: String
+   type: String
 }

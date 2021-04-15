@@ -43,4 +43,11 @@ model Transaction {
   receiver         Account?    @relation(name:"Receiver",fields: [receiverId], references: [id])
   receiverId    Int?
   key   String?
+  note String?
+  type TranType?
+}
+
+enum TranType {
+  Payment
+  Transfer
 }
