@@ -32,7 +32,7 @@ const Accounts = () => {
                               </div>
                            </div>
                         ))}
-                     <div className="border-gray-700 bg-gray-200 p-2 rounded-lg space-y-4">
+                     <div className="border-gray-700 bg-gray-200 p-2 rounded-lg space-y-4 relative">
                         <div className="space-y-3">
                            <h1>IBAN: account.iban</h1>
                            <h1>
@@ -57,7 +57,8 @@ const Accounts = () => {
                               <h1 className="text-md">Cards</h1>
                            </div>
                         </div>
-                     </div>
+                        <div className="bg-blue-500 w-6 h-6 absolute top-0 right-0 -mx-6 rounded-full" />
+                     </div>{" "}
                   </div>
                </div>{" "}
                <div className="col-span-4">

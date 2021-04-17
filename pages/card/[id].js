@@ -5,6 +5,7 @@ import { getCard } from "./../../redux/actions/card";
 import { BsCreditCard } from "react-icons/bs";
 import Link from "next/link";
 import Permissions from "../../ui/permissions";
+
 const Account = () => {
    const dispatch = useDispatch();
    const card = useSelector((state) => state.card);

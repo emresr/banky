@@ -1,6 +1,8 @@
+import Notifications from "./notifications";
+
 const Header = () => {
    return (
-      <div className="bg-blue-600 flex justify-around py-2">
+      <div className="bg-blue-600 flex justify-around py-2 ">
          <div className="my-auto">
             <h1>Left</h1>
          </div>
@@ -11,6 +13,7 @@ const Header = () => {
                <h1>Euro: $1,22</h1>
                <h1>Gold: $1.767</h1>
             </div>
+            <Notifications />{" "}
          </div>
       </div>
    );

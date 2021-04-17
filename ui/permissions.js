@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 const Permissions = ({ name }) => {
    const [isYurticiEnabled, setIsYurticiEnabled] = useState(false);
+   const [isYurtdisiEnabled, setIsYurtdisiEnabled] = useState(false);
 
    return (
       <div className=" w-1/3 space-y-2">
@@ -27,15 +28,15 @@ const Permissions = ({ name }) => {
             <h1>Yurtdisi</h1>
             <button
                className={`transition ease-in-out duration-300 w-14 h-7 px-1 rounded-full focus:outline-none
-          ${isYurticiEnabled ? "bg-green-500" : "bg-gray-200"}
+          ${isYurtdisiEnabled ? "bg-green-500" : "bg-gray-200"}
           `}
                onClick={() => {
-                  setIsYurticiEnabled(!isYurticiEnabled);
+                  setIsYurtdisiEnabled(!isYurtdisiEnabled);
                }}
             >
                <div
                   className={`transition ease-in-out duration-300 rounded-full h-6 w-6 bg-white shadow    
-            ${isYurticiEnabled && "transform translate-x-6"}
+            ${isYurtdisiEnabled && "transform translate-x-6"}
             `}
                ></div>
             </button>
