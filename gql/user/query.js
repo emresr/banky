@@ -9,6 +9,10 @@ const GETUSER = gql`
          accounts {
             id
             iban
+            balance
+            cards {
+               id
+            }
             cards {
                id
             }

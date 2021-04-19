@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../../components/layout/layout";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../../redux/actions/user";
+import { getAccount } from "../../redux/actions/account";
 import { BsCreditCard } from "react-icons/bs";
 import Link from "next/link";
 import Transaction from "../../ui/transaction";
+import { useRouter } from "next/router";
+import CreditCard from "../../ui/card";
+
 const Account = () => {
+   const router = useRouter();
+   const { id } = router.query;
+
    const dispatch = useDispatch();
-   const user = useSelector((state) => state.user);
-   console.log("lmao", user.user);
+   const account = useSelector((state) => state.accounts);
+   console.log("lmao", account);
 
    useEffect(() => {
-      dispatch(getUser(2));
+      dispatch(getAccount(1));
    }, []);
 
    const [isSended, setIsSended] = useState(true);
@@ -24,7 +30,7 @@ const Account = () => {
                   <div className="space-y-3  mt-5 mx-3">
                      <div className="border-gray-700 bg-gray-200 p-2 rounded-lg space-y-4">
                         <div>
-                           <h1>IBAN: account.iban</h1>
+                           <h1>IBAN: {account.account.iban}</h1>
                         </div>{" "}
                         <Link href={`/account/`}>
                            <a>
@@ -73,7 +79,17 @@ const Account = () => {
                      </div>
                   </div>
                </div>
-               <div className="col-span-4">Cards</div>
+               <div className="col-span-4 p-2 divide-y">
+                  <h1 className="flex justify-center text-2xl ">Cards</h1>
+                  {account.account.cards &&
+                     account.account.cards.map((card) => (
+                        <Link href={`/card/${card.id}`}>
+                           <a>
+                              <CreditCard />
+                           </a>
+                        </Link>
+                     ))}
+               </div>
             </div>
          </div>
       </Layout>

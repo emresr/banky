@@ -3,7 +3,7 @@ async function me(parent, args, context, info) {
 
    return await context.prisma.user.findUnique({
       where: {
-         id: userId,
+         id: 2,
       },
    });
 }

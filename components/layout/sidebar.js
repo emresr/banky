@@ -69,7 +69,7 @@ const Sidebar = () => {
                </button>
             </li>
          </ul>
-         <div className="mt-2 p-2">
+         <div className=" p-2">
             <h1 className="text-bold text-sm text-gray-600">
                2021 Banky - All rights reserved
             </h1>

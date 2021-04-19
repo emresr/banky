@@ -5,11 +5,12 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "./../redux/actions/user";
-import CreditCard from "../ui/creditcard";
+import CreditCard from "../ui/card";
 import { IoSearch, IoWaterSharp } from "react-icons/io5";
 import { FcElectricity, FcExpand } from "react-icons/fc";
 import { AiOutlineEdit } from "react-icons/ai";
 import { TiTick } from "react-icons/ti";
+
 function HomePage() {
    const dispatch = useDispatch();
    const user = useSelector((state) => state.user);

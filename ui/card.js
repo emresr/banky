@@ -1,29 +1,29 @@
 const Card = ({}) => {
    return (
-      <div class=" w-96">
-         <div class=" bg-gradient-to-r from-purple-500 to-red-300 rounded-lg">
-            <div class="w-full p-4">
-               <div class="flex justify-between items-center text-white">
+      <div className=" w-full">
+         <div className=" bg-gradient-to-r from-purple-500 to-red-300 rounded-lg">
+            <div className="w-full p-4">
+               <div className="flex justify-between items-center text-white">
                   {" "}
-                  <span class="text-3xl font-bold">
-                     12,290 <small class="text-sm font-light">USD</small>
+                  <span className="text-3xl font-bold">
+                     1290 <span className="">$</span>
                   </span>{" "}
                </div>
                <div className="">
                   <h1 className="text-4xl text-white">**** **** **** ****</h1>
                </div>
-               <div class="flex justify-between items-center mt-10">
-                  <div class="w-full mt-8 flex justify-between items-center text-white">
-                     <div class="">
+               <div className="flex justify-between items-center mt-10">
+                  <div className="w-full mt-8 flex justify-between items-center text-white">
+                     <div className="">
                         {" "}
-                        <span class="font-bold">Emre Sr</span>{" "}
+                        <span className="font-bold">Emre Sr</span>{" "}
                      </div>
-                     <div class="flex flex-col">
+                     <div className="flex flex-col">
                         {" "}
-                        <span class="font-bold text-white text-sm">
+                        <span className="font-bold text-white text-sm">
                            Expires
                         </span>
-                        <span class="font-bold">01/21</span>{" "}
+                        <span className="font-bold">01/21</span>{" "}
                      </div>
                   </div>
                </div>

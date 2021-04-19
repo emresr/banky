@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "./../redux/actions/user";
-import CreditCard from "../ui/creditcard";
 
 function HomePage() {
    const dispatch = useDispatch();
@@ -31,9 +30,6 @@ function HomePage() {
                </div>
                <div className="col-span-4">
                   <h1>Cards</h1>
-                  <div>
-                     <CreditCard name="Emre Sr" />
-                  </div>
                </div>
             </div>
          </Layout>
