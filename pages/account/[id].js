@@ -17,7 +17,7 @@ const Account = () => {
    console.log("lmao", account);
 
    useEffect(() => {
-      dispatch(getAccount(1));
+      dispatch(getAccount(2));
    }, []);
 
    const [isSended, setIsSended] = useState(true);
@@ -26,7 +26,13 @@ const Account = () => {
          <div className="mt-4 mx-3 ">
             <div className="grid grid-cols-12">
                <div className="col-span-8">
-                  <h1 className="text-3xl">Account</h1>
+                  <div className="flex justify-between ">
+                     <h1 className="text-3xl">Account</h1>
+                     <button className="bg-green-500 p-2 transition duration-300 hover:bg-green-400 rounded-lg">
+                        {" "}
+                        Create Card
+                     </button>
+                  </div>
                   <div className="space-y-3  mt-5 mx-3">
                      <div className="border-gray-700 bg-gray-200 p-2 rounded-lg space-y-4">
                         <div>
@@ -73,13 +79,29 @@ const Account = () => {
                            </div>
                         </div>
                         <div>
-                           <Transaction amount="600" />{" "}
-                           <Transaction amount="99" />
+                           {isSended ? (
+                              <div>
+                                 {" "}
+                                 <Transaction amount="600" />
+                                 {account.account.sended &&
+                                    account.account.sended.map((sended) => (
+                                       <Transaction amount={sended.amount} />
+                                    ))}
+                              </div>
+                           ) : (
+                              <div>
+                                 {" "}
+                                 {account.account.received &&
+                                    account.account.received.map((received) => (
+                                       <Transaction amount={received.amount} />
+                                    ))}{" "}
+                              </div>
+                           )}
                         </div>
                      </div>
                   </div>
                </div>
-               <div className="col-span-4 p-2 divide-y">
+               <div className="col-span-4 p-2 divide-y space-y-4">
                   <h1 className="flex justify-center text-2xl ">Cards</h1>
                   {account.account.cards &&
                      account.account.cards.map((card) => (

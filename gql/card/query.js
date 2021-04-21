@@ -8,6 +8,13 @@ const GETCARD = gql`
             id
             iban
          }
+
+         atmdomestic
+         atmabroad
+         shoppingdomestic
+         shoppingabroad
+         ecommercedomestic
+         ecommerceabroad
       }
    }
 `;

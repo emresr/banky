@@ -3,7 +3,7 @@ import Layout from "../components/layout/layout";
 import CreditCard from "../ui/card";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "./../redux/actions/user";
-
+import Link from "next/link";
 const Cards = () => {
    const dispatch = useDispatch();
    const user = useSelector((state) => state.user);
@@ -17,13 +17,17 @@ const Cards = () => {
          <div className="mt-4 ml-3">
             <div className=" w-1/2">
                <h1 className="text-3xl">Cards</h1>
-               <div className=" space-y-4">
+               <div className="space-y-4 ">
                   {user.user &&
                      user.user.accounts.map((account) =>
-                        account.cards.map((card) => <CreditCard />)
+                        account.cards.map((card) => (
+                           <Link href={`/card/${card.id}`}>
+                              <a>
+                                 <CreditCard />
+                              </a>
+                           </Link>
+                        ))
                      )}
-
-                  <h1>Preferences</h1>
                </div>
             </div>
          </div>

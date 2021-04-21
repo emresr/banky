@@ -135,6 +135,22 @@ async function createCard(parent, args, context, info) {
       },
    });
 }
+async function updateCardPermissions(parent, args, context, info) {
+   return await context.prisma.card.update({
+      where: {
+         id: parseInt(args.cardId),
+      },
+      data: {
+         atmdomestic: args.atmdomestic,
+         atmabroad: args.atmabroad,
+         shopppingdomestic: args.shopppingdomestic,
+         shoppingabroad: args.shoppingabroad,
+         ecommercedomestic: args.ecommercedomestic,
+         ecommerceabroad: args.ecommerceabroad,
+      },
+   });
+}
+
 module.exports = {
    signup,
    login,
@@ -147,4 +163,5 @@ module.exports = {
    createTransaction,
    //card
    createCard,
+   updateCardPermissions,
 };

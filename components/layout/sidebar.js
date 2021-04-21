@@ -2,7 +2,7 @@ import Link from "next/link";
 import { BsCreditCard } from "react-icons/bs";
 const Sidebar = () => {
    return (
-      <div className="mx-6 mt-5">
+      <div className="mx-6 mt-5 fixed">
          <div className="flex space-x-4 mx-5">
             {" "}
             <img

@@ -27,6 +27,15 @@ type Mutation {
 
    #card
    createCard(accountId: ID!): Card!
+   updateCardPermissions(
+      cardId: ID!
+      atmdomestic: Boolean
+      atmabroad: Boolean
+      shoppingabroad: Boolean
+      shoppingdomestic: Boolean
+      ecommerceabroad: Boolean
+      ecommercedomestic: Boolean
+   ): Card!
 }
 
 scalar DateTime
@@ -59,6 +68,13 @@ type Card {
    name: String
    account: Account
    accountId: Int
+   #permissions
+   atmdomestic: Boolean!
+   atmabroad: Boolean!
+   shoppingdomestic: Boolean!
+   shoppingabroad: Boolean!
+   ecommercedomestic: Boolean!
+   ecommerceabroad: Boolean!
 }
 
 type Transaction {

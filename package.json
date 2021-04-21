@@ -22,6 +22,7 @@
       "react-icons": "^4.1.0",
       "react-redux": "^7.2.3",
       "react-router": "^5.2.0",
+      "recharts": "^2.0.9",
       "redux": "^4.0.5",
       "redux-thunk": "^2.3.0",
       "subscriptions-transport-ws": "^0.9.18",

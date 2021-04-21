@@ -5,6 +5,15 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "./../redux/actions/user";
+import {
+   LineChart,
+   Line,
+   CartesianGrid,
+   XAxis,
+   YAxis,
+   Tooltip,
+} from "recharts";
+import Card from "../ui/card";
 
 function HomePage() {
    const dispatch = useDispatch();
@@ -14,22 +23,47 @@ function HomePage() {
    useEffect(() => {
       dispatch(getUser(1));
    }, []);
+   //chart
+
+   const data = [
+      { name: "Page A", uv: 400, pv: 2400, amt: 2400 },
+      { name: "Page A", uv: 600, pv: 2400, amt: 2400 },
+      { name: "Page A", uv: 700, pv: 2400, amt: 2400 },
+   ];
 
    return (
       <div>
          <Head>
-            <title>banky</title>
+            <title>Banky</title>
             <link rel="icon" href="/favicon.ico" />
          </Head>
 
          <Layout className="">
             <div className="grid grid-cols-12">
                <div className="mt-4 ml-3 col-span-8">
-                  <h1 className="text-3xl ">Hello Emre</h1>
+                  <h1 className="text-3xl ">Hello {user.user.email}</h1>
                   <h1>Your last visit: 12.12.2012</h1>
+                  <h1>Weekly Activity</h1>
+                  <LineChart
+                     width={600}
+                     height={300}
+                     data={data}
+                     margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
+                     className="mt-10"
+                  >
+                     <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+                     <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                     <XAxis dataKey="name" />
+                     <YAxis />
+                     <Tooltip />
+                  </LineChart>{" "}
                </div>
-               <div className="col-span-4">
+               <div className="col-span-4 space-y-3">
                   <h1>Cards</h1>
+                  {user.user.accounts &&
+                     user.user.accounts.map((account) =>
+                        account.cards.map((card) => <Card key={card.id} />)
+                     )}
                </div>
             </div>
          </Layout>

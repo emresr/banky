@@ -15,6 +15,14 @@ const GETACCOUNT = gql`
          cards {
             id
          }
+         sended {
+            id
+            amount
+         }
+         received {
+            id
+            amount
+         }
       }
    }
 `;

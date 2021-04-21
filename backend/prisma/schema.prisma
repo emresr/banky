@@ -34,10 +34,20 @@ model Card {
   name      String?
   account      Account?    @relation(fields: [accountId], references: [id])
   accountId    Int?
+
+  //permissions
+  atmdomestic Boolean @default(true)
+  atmabroad Boolean @default(false)
+  shoppingdomestic Boolean @default(true)
+  shoppingabroad Boolean @default(false)
+  ecommercedomestic Boolean @default(false)
+  ecommerceabroad Boolean @default(false)
+
 }
 model Transaction {
   id Int @default(autoincrement()) @id
   amount Float
+  createdAt DateTime @default(now())
   sender         Account?    @relation(name:"Sender",fields: [senderId], references: [id])
   senderId    Int?
   receiver         Account?    @relation(name:"Receiver",fields: [receiverId], references: [id])
@@ -51,3 +61,4 @@ enum TranType {
   Payment
   Transfer
 }
+
