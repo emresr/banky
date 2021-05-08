@@ -12,6 +12,7 @@ const GETACCOUNT = gql`
       account(id: $id) {
          id
          iban
+         balance
          cards {
             id
          }

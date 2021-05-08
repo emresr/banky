@@ -15,6 +15,7 @@ model User {
   name    String?
   accounts Account[]
   total Float @default(0)
+  phonenumber Int? 
 }
 
 model Account {
@@ -50,8 +51,10 @@ model Transaction {
   createdAt DateTime @default(now())
   sender         Account?    @relation(name:"Sender",fields: [senderId], references: [id])
   senderId    Int?
+  newSenderBalance Int?
   receiver         Account?    @relation(name:"Receiver",fields: [receiverId], references: [id])
   receiverId    Int?
+  newReceiverBalance Int?
   key   String?
   note String?
   type TranType?

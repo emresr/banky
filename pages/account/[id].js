@@ -17,7 +17,7 @@ const Account = () => {
    console.log("lmao", account);
 
    useEffect(() => {
-      dispatch(getAccount(2));
+      dispatch(getAccount(id));
    }, []);
 
    const [isSended, setIsSended] = useState(true);
@@ -101,7 +101,7 @@ const Account = () => {
                      </div>
                   </div>
                </div>
-               <div className="col-span-4 p-2 divide-y space-y-4">
+               <div className="col-span-4 p-2 divide-y space-y-">
                   <h1 className="flex justify-center text-2xl ">Cards</h1>
                   {account.account.cards &&
                      account.account.cards.map((card) => (

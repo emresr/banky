@@ -53,7 +53,7 @@ const Transfers = () => {
                      <button>Send to Phone Number</button>
                   </div>
                   <div className="bg-gray-300">
-                     <button>Send to Username</button>
+                     <button>Send to Email</button>
                   </div>
                </div>{" "}
                <div className="mt-4 bg-gray-400">

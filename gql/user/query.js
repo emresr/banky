@@ -16,6 +16,15 @@ const GETUSER = gql`
             cards {
                id
             }
+            sended {
+               createdAt
+               amount
+               newSenderBalance
+            }
+            received {
+               createdAt
+               amount
+            }
          }
       }
    }

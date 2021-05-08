@@ -78,6 +78,7 @@ async function updateAccount(parent, args, context, info) {
       },
       data: {
          iban: args.iban,
+         balance: args.balance,
       },
    });
 }
@@ -88,7 +89,7 @@ async function createTransaction(parent, args, context, info) {
    //sender
    const sender = await context.prisma.account.findUnique({
       where: {
-         id: parseInt(args.senderId),
+         id: userId,
       },
       select: {
          balance: true,
@@ -100,6 +101,9 @@ async function createTransaction(parent, args, context, info) {
       },
       data: {
          balance: sender.balance - args.amount,
+      },
+      select: {
+         balance: true,
       },
    });
    //receiver
@@ -118,12 +122,24 @@ async function createTransaction(parent, args, context, info) {
       data: {
          balance: sender.balance + args.amount,
       },
+      select: {
+         balance: true,
+      },
    });
    return await context.prisma.transaction.create({
       data: {
          sender: { connect: { id: parseInt(args.senderId) } },
+         newSenderBalance: senderBalance.balance,
          receiver: { connect: { id: parseInt(args.receiverId) } },
+         newReceiverBalance: receiverBalance.balance,
          amount: args.amount,
+      },
+   });
+}
+async function deleteTransaction(parent, args, context, info) {
+   return await context.prisma.transaction.delete({
+      where: {
+         id: parseInt(args.id),
       },
    });
 }
@@ -161,6 +177,7 @@ module.exports = {
    updateAccount,
    //transaction
    createTransaction,
+   deleteTransaction,
    //card
    createCard,
    updateCardPermissions,

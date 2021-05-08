@@ -8,7 +8,8 @@ import { BsCreditCard } from "react-icons/bs";
 const Account = ({ id }) => {
    const dispatch = useDispatch();
    const account = useSelector((state) => state.accounts);
-   console.log("account", account);
+   console.log("account", account.account);
+   console.log("id", id);
 
    useEffect(() => {
       dispatch(getAccount(id));
@@ -23,7 +24,9 @@ const Account = ({ id }) => {
                   <div className="flex space-x-3">
                      {" "}
                      <BsCreditCard className="my-auto " />
-                     <h1 className="text-md">See details</h1>
+                     <h1 className="text-md">
+                        See details {account.account.id}
+                     </h1>
                   </div>
                </a>
             </Link>
@@ -34,7 +37,8 @@ const Account = ({ id }) => {
          </div>
          <div className="mt-4">
             <h1>
-               Balance: <span className="font-bold">$983,5</span>
+               Balance:{" "}
+               <span className="font-bold">{account.account.balance}$</span>
             </h1>
          </div>
       </div>

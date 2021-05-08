@@ -12,6 +12,7 @@ const Cards = () => {
    useEffect(() => {
       dispatch(getUser(1));
    }, []);
+
    return (
       <Layout>
          <div className="mt-4 ml-3">

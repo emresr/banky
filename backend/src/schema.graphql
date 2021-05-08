@@ -17,14 +17,14 @@ type Mutation {
 
    #account
    createAccount: Account!
-   updateAccount(accountId: ID!, iban: String!): Account!
+   updateAccount(accountId: ID!, iban: String!, balance: Int): Account!
    #transaction
    createTransaction(
       senderId: ID!
       receiverId: ID!
       amount: Float!
    ): Transaction!
-
+   deleteTransaction(id: ID!): Transaction
    #card
    createCard(accountId: ID!): Card!
    updateCardPermissions(
@@ -81,10 +81,13 @@ type Transaction {
    id: ID!
    sender: Account
    senderId: Int
+   newSenderBalance: Int
    receiver: Account
    receiverId: Int
+   newReceiverBalance: Int
    key: String
    amount: Float
    note: String
    type: String
+   createdAt: DateTime
 }

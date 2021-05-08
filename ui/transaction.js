@@ -5,7 +5,7 @@ const Transaction = ({ amount, to }) => {
    const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
    return (
-      <div className="border-2 border-black ">
+      <div className="border-2 border-black flex py-2 ">
          <button
             onClick={() => {
                setIsDetailsOpen(!isDetailsOpen);

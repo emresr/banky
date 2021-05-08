@@ -14,6 +14,7 @@ import {
    Tooltip,
 } from "recharts";
 import Card from "../ui/card";
+import moment from "moment";
 
 function HomePage() {
    const dispatch = useDispatch();
@@ -25,11 +26,20 @@ function HomePage() {
    }, []);
    //chart
 
-   const data = [
-      { name: "Page A", uv: 400, pv: 2400, amt: 2400 },
-      { name: "Page A", uv: 600, pv: 2400, amt: 2400 },
-      { name: "Page A", uv: 700, pv: 2400, amt: 2400 },
-   ];
+   const data = [];
+
+   for (let i = 0; i < 3; i++) {
+      user.user.accounts &&
+         user.user.accounts.map(
+            (account) =>
+               account.sended[i].amount &&
+               data.push({
+                  name: moment(account.sended[i].createdAt, "MM-DD"),
+                  uv: account.sended[i].newSenderBalance,
+               })
+         );
+   }
+   console.log(data);
 
    return (
       <div>
@@ -58,7 +68,7 @@ function HomePage() {
                      <Tooltip />
                   </LineChart>{" "}
                </div>
-               <div className="col-span-4 space-y-3">
+               <div className="col-span-4 space-y-3 mx-4">
                   <h1>Cards</h1>
                   {user.user.accounts &&
                      user.user.accounts.map((account) =>

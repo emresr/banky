@@ -1,4 +1,7 @@
 const Card = ({}) => {
+   const randomFirstTwo = Math.floor(Math.random() * 100);
+
+   const randomLastFour = Math.floor(Math.random() * 10000);
    return (
       <div className=" w-full">
          <div className=" bg-gradient-to-r from-purple-500 to-red-300 rounded-lg">
@@ -10,7 +13,9 @@ const Card = ({}) => {
                   </span>{" "}
                </div>
                <div className="">
-                  <h1 className="text-4xl text-white">**** **** **** ****</h1>
+                  <h1 className="text-2xl text-white font-bold">
+                     {randomFirstTwo}** **** **** {randomLastFour}{" "}
+                  </h1>
                </div>
                <div className="flex justify-between items-center mt-10">
                   <div className="w-full mt-8 flex justify-between items-center text-white">
