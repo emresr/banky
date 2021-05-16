@@ -16,8 +16,6 @@ const Accounts = () => {
       dispatch(getUser(2));
    }, []);
 
-   const [isPicked, setIsPicked] = useState(true);
-   const [picked, setPicked] = useState(2);
    return (
       <Layout>
          <div className="mt-4 mx-3 ">
@@ -25,7 +23,7 @@ const Accounts = () => {
                <div className="col-span-8">
                   <h1 className="text-3xl">Accounts</h1>
                   <div className="space-y-6 mt-5 mx-3">
-                     {true &&
+                     {accounts &&
                         accounts.user.accounts &&
                         accounts.user.accounts.map((account) => (
                            <div
@@ -72,13 +70,6 @@ const Accounts = () => {
                         ))}
                   </div>
                </div>{" "}
-               {/*      <div className="col-span-4">
-                  {isPicked ? (
-                     <Account id={picked} />
-                  ) : (
-                     <h1>Pick account to see details</h1>
-                  )}
-               </div> */}
             </div>{" "}
          </div>
       </Layout>

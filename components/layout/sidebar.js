@@ -47,14 +47,6 @@ const Sidebar = () => {
             <li className=" flex justify-center ">
                <button className="p-2 bg-blue-500 hover:bg-blue-400 w-full rounded-lg transition ">
                   {" "}
-                  <Link href="/payments">
-                     <h1 className="font-bold">Payments</h1>
-                  </Link>
-               </button>
-            </li>
-            <li className=" flex justify-center ">
-               <button className="p-2 bg-blue-500 hover:bg-blue-400 w-full rounded-lg transition ">
-                  {" "}
                   <Link href="/transfers">
                      <h1 className="font-bold">Transfers</h1>
                   </Link>

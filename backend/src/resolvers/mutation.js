@@ -48,6 +48,8 @@ async function updateUser(parent, args, context, info) {
       data: {
          email: args.email,
          name: args.name,
+         mainAccountId: args.mainAccountId,
+         phonenumber: args.phonenumber,
       },
    });
    return updateUser;
@@ -89,7 +91,7 @@ async function createTransaction(parent, args, context, info) {
    //sender
    const sender = await context.prisma.account.findUnique({
       where: {
-         id: userId,
+         id: parseInt(args.senderId),
       },
       select: {
          balance: true,
@@ -136,6 +138,70 @@ async function createTransaction(parent, args, context, info) {
       },
    });
 }
+async function sendToIbanToPhoneNumber(parent, args, context, info) {
+   const { userId } = context;
+
+   //sender
+   const sender = await context.prisma.account.findUnique({
+      where: {
+         id: parseInt(args.senderId),
+      },
+      select: {
+         balance: true,
+      },
+   });
+   //check balance
+   const senderBalance = await context.prisma.account.update({
+      where: {
+         id: parseInt(args.senderId),
+      },
+      data: {
+         balance: sender.balance - args.amount,
+      },
+      select: {
+         balance: true,
+      },
+   });
+   //receiver
+   const receiverUser = await context.prisma.user.findUnique({
+      where: {
+         phonenumber: args.phonenumber,
+         email: args.email,
+      },
+      select: {
+         mainAccountId: true,
+      },
+   });
+   // throw error here
+   const receiver = await context.prisma.account.findUnique({
+      where: {
+         id: parseInt(receiverUser.mainAccountId),
+      },
+      select: {
+         balance: true,
+      },
+   });
+   const receiverBalance = await context.prisma.account.update({
+      where: {
+         id: parseInt(receiverUser.mainAccountId),
+      },
+      data: {
+         balance: sender.balance + args.amount,
+      },
+      select: {
+         balance: true,
+      },
+   });
+   return await context.prisma.transaction.create({
+      data: {
+         sender: { connect: { id: parseInt(args.senderId) } },
+         newSenderBalance: senderBalance.balance,
+         receiver: { connect: { id: parseInt(receiverUser.mainAccountId) } },
+         newReceiverBalance: receiverBalance.balance,
+         amount: args.amount,
+      },
+   });
+}
 async function deleteTransaction(parent, args, context, info) {
    return await context.prisma.transaction.delete({
       where: {
@@ -177,6 +243,7 @@ module.exports = {
    updateAccount,
    //transaction
    createTransaction,
+   sendToIbanToPhoneNumber,
    deleteTransaction,
    //card
    createCard,

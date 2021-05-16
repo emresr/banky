@@ -7,7 +7,6 @@ import Link from "next/link";
 const Cards = () => {
    const dispatch = useDispatch();
    const user = useSelector((state) => state.user);
-   console.log("lmao", user);
 
    useEffect(() => {
       dispatch(getUser(1));
@@ -20,6 +19,7 @@ const Cards = () => {
                <h1 className="text-3xl">Cards</h1>
                <div className="space-y-4 ">
                   {user.user &&
+                     user.user.accounts &&
                      user.user.accounts.map((account) =>
                         account.cards.map((card) => (
                            <Link href={`/card/${card.id}`}>

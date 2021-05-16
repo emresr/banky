@@ -3,20 +3,24 @@ import { BsBell } from "react-icons/bs";
 
 const Notifications = () => {
    const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+   const [isSeen, setIsSeen] = useState(false);
    return (
       <div className="my-auto">
          <button
             className="focus:outline-none"
             onClick={() => {
                setIsNotificationsOpen(!isNotificationsOpen);
+               setIsSeen(true);
             }}
          >
             <div className="relative ">
                <BsBell size={25} />
-               <div className="bg-red-500 w-2.5 h-2.5 absolute top-0 right-0  rounded-full">
-                  {/*             <span className="text-xs text-white ml-0.5 my-auto">1</span>{" "}
-                   */}{" "}
-               </div>
+               {!isSeen && (
+                  <div className="bg-red-500 w-2.5 h-2.5 absolute top-0 right-0  rounded-full">
+                     {/*             <span className="text-xs text-white ml-0.5 my-auto">1</span>{" "}
+                      */}
+                  </div>
+               )}
             </div>
          </button>
          {isNotificationsOpen && (

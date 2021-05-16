@@ -22,11 +22,12 @@ function HomePage() {
    console.log("lmao", user);
 
    useEffect(() => {
-      dispatch(getUser(1));
+      dispatch(getUser());
    }, []);
    //chart
-
-   const data = [];
+   let data = [];
+   /* 
+   
 
    for (let i = 0; i < 3; i++) {
       user.user.accounts &&
@@ -38,8 +39,7 @@ function HomePage() {
                   uv: account.sended[i].newSenderBalance,
                })
          );
-   }
-   console.log(data);
+   } */
 
    return (
       <div>

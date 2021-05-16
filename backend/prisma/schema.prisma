@@ -15,7 +15,8 @@ model User {
   name    String?
   accounts Account[]
   total Float @default(0)
-  phonenumber Int? 
+  phonenumber Int? @unique
+  mainAccountId Int?
 }
 
 model Account {
@@ -27,7 +28,7 @@ model Account {
   cards Card[] 
   sended Transaction[] @relation(name:"Sender")
   received Transaction[] @relation(name:"Receiver")
-   balance Float @default(0)
+  balance Float @default(0)
 
 }
 model Card {

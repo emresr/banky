@@ -10,9 +10,15 @@ type Query {
    transaction(id: ID!): Transaction!
 }
 type Mutation {
-   signup(email: String!, password: String!): AuthPayload
+   signup(email: String!, password: String!, name: String!): AuthPayload
    login(email: String!, password: String!): AuthPayload
-   updateUser(id: ID!, email: String!, name: String): User!
+   updateUser(
+      id: ID!
+      email: String
+      name: String
+      mainAccountId: Int
+      phonenumber: Int
+   ): User!
    deleteUser(id: ID!): User!
 
    #account
@@ -23,6 +29,12 @@ type Mutation {
       senderId: ID!
       receiverId: ID!
       amount: Float!
+   ): Transaction!
+   sendToIbanToPhoneNumber(
+      senderId: ID!
+      amount: Float!
+      email: String
+      phonenumber: Int
    ): Transaction!
    deleteTransaction(id: ID!): Transaction
    #card
@@ -47,6 +59,7 @@ type User {
    createdAt: DateTime!
    accounts: [Account!]
    total: Float
+   phonenumber: Int
 }
 type AuthPayload {
    token: String
