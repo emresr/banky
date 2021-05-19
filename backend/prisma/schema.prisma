@@ -58,11 +58,6 @@ model Transaction {
   newReceiverBalance Int?
   key   String?
   note String?
-  type TranType?
 }
 
-enum TranType {
-  Payment
-  Transfer
-}
 

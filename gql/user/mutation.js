@@ -14,7 +14,7 @@ const LOGIN = gql`
          token
          user {
             id
-            username
+            email
          }
       }
    }

@@ -11,13 +11,12 @@ import CreditCard from "../../ui/card";
 const Account = () => {
    const router = useRouter();
    const { id } = router.query;
-
+   console.log("id", id);
    const dispatch = useDispatch();
    const account = useSelector((state) => state.accounts);
-   console.log("lmao", account);
 
    useEffect(() => {
-      dispatch(getAccount(id));
+      dispatch(getAccount(1));
    }, []);
 
    const [isSended, setIsSended] = useState(true);
@@ -79,24 +78,24 @@ const Account = () => {
                            </div>
                         </div>
                         <div>
-                           {isSended ? (
-                              <div>
-                                 {" "}
-                                 <Transaction amount="600" />
-                                 {account.account.sended &&
-                                    account.account.sended.map((sended) => (
-                                       <Transaction amount={sended.amount} />
-                                    ))}
-                              </div>
-                           ) : (
-                              <div>
-                                 {" "}
-                                 {account.account.received &&
-                                    account.account.received.map((received) => (
-                                       <Transaction amount={received.amount} />
-                                    ))}{" "}
-                              </div>
-                           )}
+                           {" "}
+                           <div className="space-y-2 mt-5">
+                              {isSended
+                                 ? account.account.sended &&
+                                   account.account.sended.map((sended) => (
+                                      <Transaction
+                                         transaction={sended}
+                                         isSended="true"
+                                      />
+                                   ))
+                                 : account.account.received &&
+                                   account.account.received.map((received) => (
+                                      <Transaction
+                                         transaction={received}
+                                         isSended="false"
+                                      />
+                                   ))}{" "}
+                           </div>
                         </div>
                      </div>
                   </div>

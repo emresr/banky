@@ -50,6 +50,7 @@ async function updateUser(parent, args, context, info) {
          name: args.name,
          mainAccountId: args.mainAccountId,
          phonenumber: args.phonenumber,
+         total: args.total,
       },
    });
    return updateUser;

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { FcCollapse, FcExpand } from "react-icons/fc";
-
-const Transaction = ({ amount, to }) => {
+import moment from "moment";
+import dayjs from "dayjs";
+const Transaction = ({ transaction, isSended }) => {
    const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
    return (
@@ -14,17 +15,23 @@ const Transaction = ({ amount, to }) => {
          >
             {isDetailsOpen ? <FcCollapse /> : <FcExpand />}
          </button>
-         {!isDetailsOpen ? (
-            <div className="flex justify-around">
-               <h1>{amount}</h1>
-               <h1>21.02.2020</h1>
-               <h1>Electic</h1>
+         {transaction && !isDetailsOpen ? (
+            <div className="w-full flex justify-between font-extrabold mx-10">
+               <h1
+                  className={`${isSended ? "text-green-500" : "text-red-500"}`}
+               >
+                  {transaction.amount}
+               </h1>
+               <h1>10 May 2023</h1>
             </div>
          ) : (
-            <div className="flex justify-around">
-               <h1>{amount}</h1>
-               <h1>21.02.2020</h1>
-               <h1>Electic</h1>
+            <div className="w-full flex justify-between font-extrabold mx-10">
+               <h1
+                  className={`${isSended ? "text-green-500" : "text-red-500"}`}
+               >
+                  {transaction.amount}
+               </h1>
+               <h1>10 May 2023</h1>
             </div>
          )}
       </div>

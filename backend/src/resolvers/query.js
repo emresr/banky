@@ -1,3 +1,4 @@
+const jwt = require("jsonwebtoken");
 async function me(parent, args, context, info) {
    const { userId } = context;
 
@@ -52,6 +53,43 @@ async function transaction(parent, args, context, info) {
    });
 }
 
+//
+async function getLast10Transactions(parent, args, context, inof) {
+   const asSender = await context.prisma.transaction.findMany({
+      where: {
+         senderId: 1,
+      },
+      take: 10,
+   });
+   const asReceiver = await context.prisma.transaction.findMany({
+      where: {
+         receiverId: 1,
+      },
+      take: 10,
+   });
+   const x = asSender.concat(asReceiver);
+   x.sort((a, b) => (a.createdAt > b.createdAt ? 1 : -1));
+
+   const c = x.slice(0, 10);
+
+   return c;
+}
+
+//
+async function checkToken(parent, args, context, info) {
+   const token = args.token;
+   const decoded = jwt.verify(token, "prisma");
+
+   const user = await context.prisma.user.findUnique({
+      where: {
+         id: decoded.userId,
+      },
+   });
+   if (!user) {
+      throw new Error("USER_NOT_FOUND");
+   }
+   return user;
+}
 module.exports = {
    me,
    users,
@@ -62,4 +100,7 @@ module.exports = {
    cards,
    transactions,
    transaction,
+   //
+   getLast10Transactions,
+   checkToken,
 };

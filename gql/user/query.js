@@ -29,5 +29,23 @@ const GETUSER = gql`
       }
    }
 `;
-
-export { GETUSER };
+const GETLAST10 = gql`
+   query GetLast10($id: ID!) {
+      getLast10Transactions(id: $id) {
+         id
+         createdAt
+         amount
+         newSenderBalance
+         newReceiverBalance
+      }
+   }
+`;
+const CHECKTOKEN = gql`
+   query CheckToken($token: String!) {
+      checkToken(token: $token) {
+         id
+         username
+      }
+   }
+`;
+export { GETUSER, GETLAST10, CHECKTOKEN };

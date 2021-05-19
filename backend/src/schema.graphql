@@ -8,6 +8,10 @@ type Query {
    card(id: ID!): Card!
    transactions: [Transaction!]!
    transaction(id: ID!): Transaction!
+
+   ##
+   getLast10Transactions(id: ID!): [Transaction!]!
+   checkToken(token: String!): User!
 }
 type Mutation {
    signup(email: String!, password: String!, name: String!): AuthPayload
@@ -18,6 +22,7 @@ type Mutation {
       name: String
       mainAccountId: Int
       phonenumber: Int
+      total: Float
    ): User!
    deleteUser(id: ID!): User!
 

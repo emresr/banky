@@ -12,7 +12,7 @@ import getClient from "../apollo/apollo";
 
 function MyApp({ Component, pageProps }) {
    const token = Cookies.get("token") ? Cookies.get("token") : null;
-
+   console.log(token);
    return (
       <ApolloProvider client={getClient()}>
          <Component {...pageProps} />

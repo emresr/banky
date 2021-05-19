@@ -19,10 +19,12 @@ const GETACCOUNT = gql`
          sended {
             id
             amount
+            createdAt
          }
          received {
             id
             amount
+            createdAt
          }
       }
    }

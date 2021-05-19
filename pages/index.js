@@ -4,7 +4,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "./../redux/actions/user";
+import { getUser, getLast10 } from "./../redux/actions/user";
 import {
    LineChart,
    Line,
@@ -15,32 +15,30 @@ import {
 } from "recharts";
 import Card from "../ui/card";
 import moment from "moment";
+import { transaction } from "../backend/src/resolvers/query";
 
 function HomePage() {
    const dispatch = useDispatch();
    const user = useSelector((state) => state.user);
-   console.log("lmao", user);
-
+   console.log("user", user);
    useEffect(() => {
-      dispatch(getUser());
+      dispatch(getLast10(1));
    }, []);
+
    //chart
    let data = [];
-   /* 
-   
 
-   for (let i = 0; i < 3; i++) {
-      user.user.accounts &&
-         user.user.accounts.map(
-            (account) =>
-               account.sended[i].amount &&
-               data.push({
-                  name: moment(account.sended[i].createdAt, "MM-DD"),
-                  uv: account.sended[i].newSenderBalance,
-               })
-         );
-   } */
+   user.last10 &&
+      user.last10.map(
+         (transaction) =>
+            transaction.amount &&
+            data.push({
+               name: moment(transaction.createdAt, "MM-DD"),
+               uv: transaction.newSenderBalance,
+            })
+      );
 
+   console.log(data);
    return (
       <div>
          <Head>

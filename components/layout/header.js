@@ -1,6 +1,20 @@
 import Notifications from "./notifications";
 
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
 const Header = () => {
+   const dispatch = useDispatch();
+
+   const token = useSelector((state) => state.user.token);
+   const user = useSelector((state) => state.user.user);
+
+   useEffect(() => {
+      if (token) {
+         localStorage.setItem("token", token);
+      }
+   }, [token]);
+
    return (
       <div className="bg-blue-600 flex justify-around py-2 ">
          <div className="my-auto">
