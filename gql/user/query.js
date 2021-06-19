@@ -44,7 +44,28 @@ const CHECKTOKEN = gql`
    query CheckToken($token: String!) {
       checkToken(token: $token) {
          id
-         username
+         email
+         total
+         accounts {
+            id
+            iban
+            balance
+            cards {
+               id
+            }
+            cards {
+               id
+            }
+            sended {
+               createdAt
+               amount
+               newSenderBalance
+            }
+            received {
+               createdAt
+               amount
+            }
+         }
       }
    }
 `;

@@ -11,28 +11,18 @@ function Layout({ children }) {
    const token = useSelector((state) => state.user.token);
    const user = useSelector((state) => state.user);
 
-   console.log("local", localStorage.getItem("token"));
-
    useEffect(() => {
       if (!token) {
          console.log("token yok");
-         if (localStorage.getItem("token")) {
-            console.log("token alcam lcoalden");
-            dispatch(checkToken(localStorage.getItem("token")));
-            Cookies.set("token", localStorage.getItem("token"));
+         if (Cookies.set("token")) {
+            //   dispatch(checkToken(Cookies.get("token")));
             console.log(Cookies.get("token"));
-         } else {
-            Cookies.remove("token");
          }
-      } else {
-         console.log("token var", token);
       }
    }, [token]);
 
-   console.log("token", Cookies.get("token"));
-   console.log("user", user);
    return (
-      <div className="">
+      <div className="scroll">
          <Header />
          <main className="grid grid-cols-12  h-screen">
             <div className="col-span-3">

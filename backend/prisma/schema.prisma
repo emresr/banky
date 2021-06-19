@@ -57,7 +57,7 @@ model Transaction {
   receiverId    Int?
   newReceiverBalance Int?
   key   String?
-  note String?
+  note String? @default("Some note")
 }
 
 

@@ -4,6 +4,8 @@ import { BiTransfer } from "react-icons/bi";
 import { IoWalletOutline } from "react-icons/io5";
 import { FiSettings } from "react-icons/fi";
 import { AiOutlineBank } from "react-icons/ai";
+import styles from "./Sidebar.module.css";
+
 const Sidebar = () => {
    return (
       <div className="mx-6 mt-5 fixed">

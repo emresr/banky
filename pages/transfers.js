@@ -28,9 +28,11 @@ const Transfers = () => {
    const [isEmail, setIsEmail] = useState(false);
 
    const [senderAccountId, setSenderAccountId] = useState(0);
+   console.log(senderAccountId);
    //Iban
    const [receiverId, setReceiverId] = useState("");
    const [amount, setAmount] = useState(0);
+   const [note, setNote] = useState("");
    // Email - Phone number
    const [phonenumber, setPhonenumber] = useState("");
    const [phoneEmailAmount, setPhoneEmailAmount] = useState(0);
@@ -44,9 +46,10 @@ const Transfers = () => {
          const result = await getClient().mutate({
             mutation: CREATETRANSACTION,
             variables: {
-               senderId: 1,
+               senderId: senderAccountId,
                receiverId: receiverId,
                amount: parseFloat(amount),
+               note: note,
             },
          });
          if (result.data) {
@@ -68,18 +71,20 @@ const Transfers = () => {
             ? await getClient().mutate({
                  mutation: IBANPHONETRANSACTION,
                  variables: {
-                    senderId: 1,
+                    senderId: senderAccountId,
                     email: email,
                     amount: parseFloat(phoneEmailAmount),
+                    note: note,
                  },
               })
             : phonenumber !== 0 &&
               (await getClient().mutate({
                  mutation: IBANPHONETRANSACTION,
                  variables: {
-                    senderId: 1,
+                    senderId: senderAccountId,
                     phonenumber: phonenumber,
                     amount: parseFloat(phoneEmailAmount),
+                    note: note,
                  },
               }));
          if (result.data) {
@@ -100,11 +105,11 @@ const Transfers = () => {
          <Layout>
             <div className="grid grid-cols-12">
                <div className="col-span-8">
-                  <h1 className="text-2xl">Transfers</h1>
+                  <h1 className="text-2xl ">Transfers</h1>
 
                   <div className="mt-4 bg-gray-400">
                      {!isIban ? (
-                        <div className="bg-gray-300">
+                        <div className="bg-gray-300 p-2 border-b-2">
                            <label
                               onClick={() => {
                                  setIsIban(true);
@@ -118,38 +123,54 @@ const Transfers = () => {
                            </label>
                         </div>
                      ) : (
-                        <div className=" space-y-2">
+                        <div className=" space-y-2 p-2">
                            <form onSubmit={onSubmitIban}>
                               <label
                                  onClick={() => {
                                     setIsIban(false);
                                  }}
+                                 className="bg-gray-300"
                               >
                                  <h1 className="text-2xl font-bold">
                                     Send to IBAN
                                  </h1>
                               </label>
-                              <input
-                                 className="w-1/2 rounded-lg h-10 focus:outline-none text-4xl px-2"
-                                 placeholder="IBAN"
-                                 value={receiverId}
-                                 onChange={(e) => setReceiverId(e.target.value)}
-                              />
-                              <div>
+
+                              <div className="space-y-2">
                                  <input
                                     className="w-1/2 rounded-lg h-10 focus:outline-none text-4xl px-2"
-                                    placeholder="Amount"
-                                    value={amount}
-                                    onChange={(e) => setAmount(e.target.value)}
-                                    type="number"
+                                    placeholder="IBAN"
+                                    value={receiverId}
+                                    onChange={(e) =>
+                                       setReceiverId(e.target.value)
+                                    }
                                  />
+                                 <div>
+                                    <input
+                                       className="w-1/2 rounded-lg h-10 focus:outline-none text-4xl px-2"
+                                       placeholder="Amount"
+                                       value={amount}
+                                       onChange={(e) =>
+                                          setAmount(e.target.value)
+                                       }
+                                       type="number"
+                                    />
+                                 </div>
+                                 <div>
+                                    <input
+                                       className="w-1/2 rounded-lg h-10 focus:outline-none text-4xl px-2"
+                                       placeholder="Note"
+                                       value={note}
+                                       onChange={(e) => setNote(e.target.value)}
+                                    />
+                                 </div>
+                                 <button
+                                    className="bg-purple-800 p-2 text-white rounded-xl text-lg"
+                                    type="submit"
+                                 >
+                                    Send
+                                 </button>
                               </div>
-                              <button
-                                 className="bg-purple-800 p-2 text-white rounded-xl text-lg"
-                                 type="submit"
-                              >
-                                 Send
-                              </button>
                            </form>
                         </div>
                      )}
@@ -162,13 +183,13 @@ const Transfers = () => {
                                  setIsPhone(true);
                               }}
                            >
-                              <h1 className="text-2xl font-bold">
+                              <h1 className="text-2xl font-bold p-2 border-b-2">
                                  Send to Phone number
                               </h1>
                            </label>
                         </div>
                      ) : (
-                        <div className=" space-y-2">
+                        <div className="p-2 space-y-2">
                            <form onSubmit={onSubmitPhoneEmail}>
                               <label
                                  onClick={() => {
@@ -179,35 +200,47 @@ const Transfers = () => {
                                     Send to Phone number
                                  </h1>
                               </label>
-                              <input
-                                 className="w-1/2 rounded-lg h-10 focus:outline-none text-4xl px-2"
-                                 placeholder="IBAN"
-                                 value={phonenumber}
-                                 onChange={(e) =>
-                                    setPhonenumber(e.target.value)
-                                 }
-                                 type="number"
-                              />
-                              <div>
+                              <div className="space-y-2">
                                  <input
                                     className="w-1/2 rounded-lg h-10 focus:outline-none text-4xl px-2"
-                                    placeholder="Amount"
-                                    value={phoneEmailAmount}
-                                    onChange={(e) => setAmount(e.target.value)}
+                                    placeholder="Phone number"
+                                    value={phonenumber}
+                                    onChange={(e) =>
+                                       setPhonenumber(e.target.value)
+                                    }
                                     type="number"
                                  />
+                                 <div>
+                                    <input
+                                       className="w-1/2 rounded-lg h-10 focus:outline-none text-4xl px-2"
+                                       placeholder="Amount"
+                                       value={phoneEmailAmount}
+                                       onChange={(e) =>
+                                          setAmount(e.target.value)
+                                       }
+                                       type="number"
+                                    />
+                                 </div>
+                                 <div>
+                                    <input
+                                       className="w-1/2 rounded-lg h-10 focus:outline-none text-4xl px-2"
+                                       placeholder="Note"
+                                       value={note}
+                                       onChange={(e) => setNote(e.target.value)}
+                                    />
+                                 </div>
+                                 <button
+                                    className="bg-purple-800 p-2 text-white rounded-xl text-lg"
+                                    type="submit"
+                                 >
+                                    Send
+                                 </button>
                               </div>
-                              <button
-                                 className="bg-purple-800 p-2 text-white rounded-xl text-lg"
-                                 type="submit"
-                              >
-                                 Send
-                              </button>
                            </form>
                         </div>
                      )}
                      {!isEmail ? (
-                        <div className="bg-gray-300">
+                        <div className="bg-gray-300 p-2 border-b-2">
                            <label
                               onClick={() => {
                                  setIsIban(false);
@@ -221,7 +254,7 @@ const Transfers = () => {
                            </label>
                         </div>
                      ) : (
-                        <div className=" space-y-2">
+                        <div className="p-2 space-y-2">
                            <form onSubmit={onSubmitPhoneEmail}>
                               <label
                                  onClick={() => {
@@ -232,36 +265,47 @@ const Transfers = () => {
                                     Send to Email
                                  </h1>
                               </label>
-                              <input
-                                 className="w-1/2 rounded-lg h-10 focus:outline-none text-4xl px-2"
-                                 placeholder="Email"
-                                 value={email}
-                                 onChange={(e) => setEmail(e.target.value)}
-                              />
-                              <div>
+                              <div className="space-y-2">
                                  <input
                                     className="w-1/2 rounded-lg h-10 focus:outline-none text-4xl px-2"
-                                    placeholder="Amount"
-                                    value={phoneEmailAmount}
-                                    onChange={(e) =>
-                                       setPhoneEmailAmount(e.target.value)
-                                    }
-                                    type="number"
+                                    placeholder="Email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                  />
+                                 <div>
+                                    <input
+                                       className="w-1/2 rounded-lg h-10 focus:outline-none text-4xl px-2"
+                                       placeholder="Amount"
+                                       value={phoneEmailAmount}
+                                       onChange={(e) =>
+                                          setPhoneEmailAmount(e.target.value)
+                                       }
+                                       type="number"
+                                    />
+                                 </div>
+                                 <div>
+                                    <input
+                                       className="w-1/2 rounded-lg h-10 focus:outline-none text-4xl px-2"
+                                       placeholder="Note"
+                                       value={note}
+                                       onChange={(e) => setNote(e.target.value)}
+                                    />
+                                 </div>
+                                 <button
+                                    className="bg-purple-800 p-2 text-white rounded-xl text-lg"
+                                    type="submit"
+                                 >
+                                    Send
+                                 </button>
                               </div>
-                              <button
-                                 className="bg-purple-800 p-2 text-white rounded-xl text-lg"
-                                 type="submit"
-                              >
-                                 Send
-                              </button>
                            </form>
                         </div>
                      )}
                   </div>
                </div>
 
-               <div className="col-span-4 p-2 space-x-2">
+               <div className="col-span-4 p-2 space-x-2 mx-2">
+                  <h1 className="border-b-2 border-black">Pick account </h1>
                   {accounts &&
                      accounts.user.accounts &&
                      accounts.user.accounts.map((account) => (
@@ -274,7 +318,9 @@ const Transfers = () => {
                            {" "}
                            <div
                               key={account.id}
-                              className="border-gray-700 bg-gray-200 p-2 rounded-lg space-y-4"
+                              className={`border-gray-700 bg-gray-200 p-2 rounded-lg space-y-4 ${
+                                 account.id == senderAccountId && "bg-red-400"
+                              }`}
                            >
                               <div className="space-y-3">
                                  <h1>IBAN: {account.iban}</h1>

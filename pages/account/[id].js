@@ -24,7 +24,7 @@ const Account = () => {
       <Layout>
          <div className="mt-4 mx-3 ">
             <div className="grid grid-cols-12">
-               <div className="col-span-8">
+               <div className="col-span-8 px-3">
                   <div className="flex justify-between ">
                      <h1 className="text-3xl">Account</h1>
                      <button className="bg-green-500 p-2 transition duration-300 hover:bg-green-400 rounded-lg">
@@ -32,35 +32,22 @@ const Account = () => {
                         Create Card
                      </button>
                   </div>
-                  <div className="space-y-3  mt-5 mx-3">
+                  <div className="space-y-3  mt-5 ">
                      <div className="border-gray-700 bg-gray-200 p-2 rounded-lg space-y-4">
                         <div>
-                           <h1>IBAN: {account.account.iban}</h1>
+                           <h1 className="font-3xl">
+                              IBAN: {account.account.iban}
+                           </h1>
                         </div>{" "}
-                        <Link href={`/account/`}>
-                           <a>
-                              <div className="flex space-x-1.5">
-                                 <BsCreditCard className="my-auto " />{" "}
-                                 <h1 className="text-md">See cards</h1>{" "}
-                              </div>{" "}
-                           </a>
-                        </Link>
                      </div>
                      <div>
+                     <div className="flex justify-between mt-5">
                         <h1 className="font-bold text-lg">Transactions</h1>
-                        <div className="flex justify-between">
+                        <div className="">
                            <div className="rounded-lg flex ">
                               <button
-                                 onClick={() => setIsSended(true)}
-                                 className={` py-1 px-2  rounded-l-md border-black flex justify-center focus:outline-none ${
-                                    isSended ? "bg-blue-500" : "bg-gray-300"
-                                 }`}
-                              >
-                                 <h1 className="text-black text-lg">Sended</h1>
-                              </button>
-                              <button
                                  onClick={() => setIsSended(false)}
-                                 className={`p-1 bg-gray-300 rounded-r-md border-black flex justify-center focus:outline-none ${
+                                 className={` py-1 px-2  rounded-l-md border-black flex justify-center focus:outline-none ${
                                     !isSended ? "bg-blue-500" : "bg-gray-300"
                                  }`}
                               >
@@ -68,16 +55,18 @@ const Account = () => {
                                     Received
                                  </h1>
                               </button>
-                           </div>
-                           <div className="flex space-x-2">
-                              <h1 className="my-auto border-2">10.12.1991</h1>{" "}
-                              <h1 className="my-auto">10.12.2031</h1>
-                              <button className="bg-green-400 rounded-lg px-1">
-                                 Filter
+                              <button
+                                 onClick={() => setIsSended(true)}
+                                 className={`p-1 bg-gray-300 rounded-r-md border-black flex justify-center focus:outline-none ${
+                                    isSended ? "bg-blue-500" : "bg-gray-300"
+                                 }`}
+                              >
+                                 <h1 className="text-black text-lg">Sended</h1>
                               </button>
                            </div>
+                         
                         </div>
-                        <div>
+                     </div>   <div>
                            {" "}
                            <div className="space-y-2 mt-5">
                               {isSended
@@ -102,14 +91,18 @@ const Account = () => {
                </div>
                <div className="col-span-4 p-2 divide-y space-y-">
                   <h1 className="flex justify-center text-2xl ">Cards</h1>
-                  {account.account.cards &&
-                     account.account.cards.map((card) => (
-                        <Link href={`/card/${card.id}`}>
-                           <a>
-                              <CreditCard />
-                           </a>
-                        </Link>
-                     ))}
+                  <div className="space-y-3">
+                     {account.account.cards &&
+                        account.account.cards.map((card) => (
+                           <div>
+                              <Link href={`/card/${card.id}`}>
+                                 <a>
+                                    <CreditCard />
+                                 </a>
+                              </Link>
+                           </div>
+                        ))}
+                  </div>
                </div>
             </div>
          </div>

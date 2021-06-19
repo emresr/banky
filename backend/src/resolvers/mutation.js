@@ -136,6 +136,7 @@ async function createTransaction(parent, args, context, info) {
          receiver: { connect: { id: parseInt(args.receiverId) } },
          newReceiverBalance: receiverBalance.balance,
          amount: args.amount,
+         note: args.note,
       },
    });
 }
@@ -200,6 +201,7 @@ async function sendToIbanToPhoneNumber(parent, args, context, info) {
          receiver: { connect: { id: parseInt(receiverUser.mainAccountId) } },
          newReceiverBalance: receiverBalance.balance,
          amount: args.amount,
+         note: args.note,
       },
    });
 }
@@ -233,6 +235,18 @@ async function updateCardPermissions(parent, args, context, info) {
       },
    });
 }
+async function deleteCard(parent, args, context, info) {
+   try {
+      await context.prisma.card.delete({
+         where: {
+            id: parseInt(args.cardId),
+         },
+      });
+      return true;
+   } catch (error) {
+      return false;
+   }
+}
 
 module.exports = {
    signup,
@@ -249,4 +263,5 @@ module.exports = {
    //card
    createCard,
    updateCardPermissions,
+   deleteCard,
 };

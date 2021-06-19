@@ -11,7 +11,7 @@ import Head from "next/head";
 
 const Accounts = () => {
    const dispatch = useDispatch();
-   const accounts = useSelector((state) => state.user.accounts);
+   const accounts = useSelector((state) => state.user);
    console.log("lmao", accounts);
 
    return (

@@ -11,7 +11,7 @@ const Cards = () => {
    const user = useSelector((state) => state.user);
 
    useEffect(() => {
-      dispatch(getUser(1));
+      dispatch(getUser(2));
    }, []);
 
    return (

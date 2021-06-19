@@ -3,7 +3,7 @@ type Query {
    users: [User!]!
    user(id: ID!): User!
    accounts: [Account!]!
-   account(id: ID!): Account!
+   account(id: ID!, dateStart: DateTime, dateEnd: DateTime): Account!
    cards: [Card!]!
    card(id: ID!): Card!
    transactions: [Transaction!]!
@@ -34,12 +34,14 @@ type Mutation {
       senderId: ID!
       receiverId: ID!
       amount: Float!
+      note: String
    ): Transaction!
    sendToIbanToPhoneNumber(
       senderId: ID!
       amount: Float!
       email: String
       phonenumber: Int
+      note: String
    ): Transaction!
    deleteTransaction(id: ID!): Transaction
    #card
@@ -53,6 +55,7 @@ type Mutation {
       ecommerceabroad: Boolean
       ecommercedomestic: Boolean
    ): Card!
+   deleteCard(cardId: ID!): Boolean
 }
 
 scalar DateTime
