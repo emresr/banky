@@ -9,7 +9,7 @@ import styles from "./Sidebar.module.css";
 const Sidebar = () => {
    return (
       <div className="mx-2  md:mx-6 mt-5  md:fixed">
-         <div className="flex space-x-3">
+         <div className="flex space-x-5 ">
             <div className="flex space-x-4 md:mx-5">
                {" "}
                <img
