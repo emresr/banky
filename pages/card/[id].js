@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Layout from "../../components/layout/layout";
 import { useDispatch, useSelector } from "react-redux";
 import { getCard } from "./../../redux/actions/card";
-import { BsCreditCard } from "react-icons/bs";
 import Link from "next/link";
 import Permissions from "../../ui/permissions";
 import CreditCard from "../../ui/card";
@@ -10,7 +9,7 @@ import CreditCard from "../../ui/card";
 const Account = () => {
    const dispatch = useDispatch();
    const card = useSelector((state) => state.card);
-   console.log("lmao", card.card);
+   console.log("lmao", card);
 
    useEffect(() => {
       dispatch(getCard(1));

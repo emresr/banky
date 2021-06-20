@@ -8,7 +8,7 @@ export const getCard = (id) => {
       getClient()
          .query({
             query: GETCARD,
-            variables: { id: id },
+            variables: { id: 1 },
          })
          .then((res) => {
             if (res.data) {

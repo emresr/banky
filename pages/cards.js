@@ -22,7 +22,7 @@ const Cards = () => {
          </Head>
          <Layout>
             <div className="mt-4 ml-3">
-               <div className=" w-1/2">
+               <div className=" w-2/3">
                   <div className="flex justify-between">
                      <h1 className="text-3xl">Cards</h1>
                      <Link href="/createcard">
@@ -31,7 +31,7 @@ const Cards = () => {
                         </a>
                      </Link>
                   </div>
-                  <div className="space-y-5 mt-4">
+                  <div className="grid grid-cols-2 gap-3 mt-4">
                      {user.user &&
                         user.user.accounts &&
                         user.user.accounts.map((account) =>

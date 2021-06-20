@@ -18,14 +18,14 @@ const Header = () => {
    }, [token]);
 
    return (
-      <div className={styles.container}>
-         <div className="my-auto">
+      <div className="bg-blue-600 flex justify-around py-2 text-center">
+         <div className="my-auto hidden md:block">
             <Link href="https://github.com/emresr/banky">
                <a className="font-bold text-gray-100 ">Source Code</a>
             </Link>
          </div>
          <h1 className="text-white font-bold text-5xl">Banky</h1>
-         <div className="">
+         <div className="hidden md:block">
             <div className="text-gray-100">
                <h1>Euro: $1,22</h1>
                <h1>Gold: $1.767</h1>

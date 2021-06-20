@@ -24,11 +24,11 @@ function Layout({ children }) {
    return (
       <div className="scroll">
          <Header />
-         <main className="grid grid-cols-12  h-screen">
-            <div className="col-span-3">
+         <main className="md:grid md:grid-cols-12  md:h-screen">
+            <div className="md:col-span-3 w-full">
                <Sidebar />
             </div>
-            <div className="col-span-9"> {children}</div>{" "}
+            <div className="md:col-span-9 w-full"> {children}</div>{" "}
          </main>
       </div>
    );
