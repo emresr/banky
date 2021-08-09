@@ -17,6 +17,10 @@ model User {
   total Float @default(0)
   phonenumber Int? @unique
   mainAccountId Int?
+  notifications Boolean @default(false)
+    smsNotf Boolean @default(false)
+  emailNotf Boolean @default(false)
+
 }
 
 model Account {

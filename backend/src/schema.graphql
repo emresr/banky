@@ -68,6 +68,9 @@ type User {
    accounts: [Account!]
    total: Float
    phonenumber: Int
+   notifications: Boolean
+   smsNotf: Boolean
+   emailNotf: Boolean
 }
 type AuthPayload {
    token: String

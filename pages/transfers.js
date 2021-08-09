@@ -23,7 +23,7 @@ const Transfers = () => {
       dispatch(getUser(2));
    }, []);
 
-   const [isIban, setIsIban] = useState(false);
+   const [isIban, setIsIban] = useState(true);
    const [isPhone, setIsPhone] = useState(false);
    const [isEmail, setIsEmail] = useState(false);
 
@@ -107,9 +107,9 @@ const Transfers = () => {
                <div className="col-span-8">
                   <h1 className="text-2xl ">Transfers</h1>
 
-                  <div className="mt-4 bg-gray-400">
+                  <div className="mt-4">
                      {!isIban ? (
-                        <div className="bg-gray-300 p-2 border-b-2">
+                        <div className="p-2 border-b-2 rounded bg-blue-700 text-white">
                            <label
                               onClick={() => {
                                  setIsIban(true);
@@ -123,8 +123,8 @@ const Transfers = () => {
                            </label>
                         </div>
                      ) : (
-                        <div className=" space-y-2 p-2">
-                           <form onSubmit={onSubmitIban}>
+                        <div className=" rounded">
+                           <div className="p-2 rounded bg-blue-700 text-white mt-3">
                               <label
                                  onClick={() => {
                                     setIsIban(false);
@@ -135,8 +135,9 @@ const Transfers = () => {
                                     Send to IBAN
                                  </h1>
                               </label>
-
-                              <div className="space-y-2">
+                           </div>{" "}
+                           <form onSubmit={onSubmitIban}>
+                              <div className="space-y-2 bg-gray-100 p-5 rounded">
                                  <input
                                     className="w-1/2 rounded-lg h-10 focus:outline-none text-4xl px-2"
                                     placeholder="IBAN"
@@ -175,22 +176,23 @@ const Transfers = () => {
                         </div>
                      )}
                      {!isPhone ? (
-                        <div className="bg-gray-300">
+                        <div className="p-2 border-b-2 rounded bg-blue-700 text-white mt-3">
                            <label
                               onClick={() => {
                                  setIsIban(false);
                                  setIsEmail(false);
                                  setIsPhone(true);
                               }}
+                              className="bg-gray-300"
                            >
-                              <h1 className="text-2xl font-bold p-2 border-b-2">
+                              <h1 className="text-2xl font-bold ">
                                  Send to Phone number
                               </h1>
                            </label>
                         </div>
                      ) : (
-                        <div className="p-2 space-y-2">
-                           <form onSubmit={onSubmitPhoneEmail}>
+                        <div className=" rounded">
+                           <div className="p-2 rounded bg-blue-700 text-white mt-3">
                               <label
                                  onClick={() => {
                                     setIsPhone(false);
@@ -200,7 +202,9 @@ const Transfers = () => {
                                     Send to Phone number
                                  </h1>
                               </label>
-                              <div className="space-y-2">
+                           </div>{" "}
+                           <form onSubmit={onSubmitPhoneEmail}>
+                              <div className="space-y-2 bg-gray-100 p-5 rounded">
                                  <input
                                     className="w-1/2 rounded-lg h-10 focus:outline-none text-4xl px-2"
                                     placeholder="Phone number"
@@ -240,13 +244,14 @@ const Transfers = () => {
                         </div>
                      )}
                      {!isEmail ? (
-                        <div className="bg-gray-300 p-2 border-b-2">
+                        <div className="p-2 border-b-2 rounded bg-blue-700 text-white mt-3">
                            <label
                               onClick={() => {
                                  setIsIban(false);
                                  setIsEmail(true);
                                  setIsPhone(false);
                               }}
+                              className="bg-gray-300"
                            >
                               <h1 className="text-2xl font-bold">
                                  Send to Email
@@ -254,8 +259,8 @@ const Transfers = () => {
                            </label>
                         </div>
                      ) : (
-                        <div className="p-2 space-y-2">
-                           <form onSubmit={onSubmitPhoneEmail}>
+                        <div className="rounded">
+                           <div className="p-2 rounded bg-blue-700 text-white mt-3">
                               <label
                                  onClick={() => {
                                     setIsEmail(false);
@@ -265,7 +270,9 @@ const Transfers = () => {
                                     Send to Email
                                  </h1>
                               </label>
-                              <div className="space-y-2">
+                           </div>
+                           <form onSubmit={onSubmitPhoneEmail}>
+                              <div className="space-y-2 bg-gray-100 p-5 rounded">
                                  <input
                                     className="w-1/2 rounded-lg h-10 focus:outline-none text-4xl px-2"
                                     placeholder="Email"

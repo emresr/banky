@@ -20,6 +20,7 @@ const Account = () => {
    }, []);
 
    const [isSended, setIsSended] = useState(true);
+
    return (
       <Layout>
          <div className="mt-4 mx-3 ">
@@ -41,32 +42,34 @@ const Account = () => {
                         </div>{" "}
                      </div>
                      <div>
-                     <div className="flex justify-between mt-5">
-                        <h1 className="font-bold text-lg">Transactions</h1>
-                        <div className="">
-                           <div className="rounded-lg flex ">
-                              <button
-                                 onClick={() => setIsSended(false)}
-                                 className={` py-1 px-2  rounded-l-md border-black flex justify-center focus:outline-none ${
-                                    !isSended ? "bg-blue-500" : "bg-gray-300"
-                                 }`}
-                              >
-                                 <h1 className="text-black text-lg">
-                                    Received
-                                 </h1>
-                              </button>
-                              <button
-                                 onClick={() => setIsSended(true)}
-                                 className={`p-1 bg-gray-300 rounded-r-md border-black flex justify-center focus:outline-none ${
-                                    isSended ? "bg-blue-500" : "bg-gray-300"
-                                 }`}
-                              >
-                                 <h1 className="text-black text-lg">Sended</h1>
-                              </button>
+                        <div className="flex justify-between mt-5">
+                           <h1 className="font-bold text-lg">Transactions</h1>
+                           <div className="">
+                              <div className="rounded-lg flex ">
+                                 <button
+                                    onClick={() => setIsSended(false)}
+                                    className={` py-1 px-2  rounded-l-md border-black flex justify-center focus:outline-none ${
+                                       !isSended ? "bg-blue-500" : "bg-gray-300"
+                                    }`}
+                                 >
+                                    <h1 className="text-black text-lg">
+                                       Received
+                                    </h1>
+                                 </button>
+                                 <button
+                                    onClick={() => setIsSended(true)}
+                                    className={`p-1 bg-gray-300 rounded-r-md border-black flex justify-center focus:outline-none ${
+                                       isSended ? "bg-blue-500" : "bg-gray-300"
+                                    }`}
+                                 >
+                                    <h1 className="text-black text-lg">
+                                       Sended
+                                    </h1>
+                                 </button>
+                              </div>
                            </div>
-                         
-                        </div>
-                     </div>   <div>
+                        </div>{" "}
+                        <div>
                            {" "}
                            <div className="space-y-2 mt-5">
                               {isSended

@@ -9,7 +9,7 @@ import styles from "./Sidebar.module.css";
 const Sidebar = () => {
    return (
       <div className="mx-2  md:mx-6 mt-5  md:fixed">
-         <div className="flex space-x-5 ">
+         <div className="flex md:block space-x-5 ">
             <div className="flex space-x-4 md:mx-5">
                {" "}
                <img
@@ -30,7 +30,7 @@ const Sidebar = () => {
                   <div className="flex space-x-2">
                      <AiOutlineBank className="my-auto" size={24} />
                      <Link href="/">
-                        <h1 className="font-bold ">General Look</h1>
+                        <h1 className="font-bold my-auto">General Look</h1>
                      </Link>
                   </div>
                </div>
