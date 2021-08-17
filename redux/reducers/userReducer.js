@@ -11,7 +11,8 @@ import Cookies from "js-cookie";
 
 const initialState = {
    user: {},
-   token: "",
+   token:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyODYzMDMwMn0.RDIbS4j9uUXNsB6F9NZgGdGqiP2aOXUqDVMdsc2wY9U",
    errorLogin: "",
    errorRegister: "",
    last10: [],

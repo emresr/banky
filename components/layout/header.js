@@ -3,19 +3,11 @@ import Notifications from "./notifications";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import styles from "./Header.module.css";
 import Link from "next/link";
 const Header = () => {
    const dispatch = useDispatch();
-
-   const token = useSelector((state) => state.user.token);
    const user = useSelector((state) => state.user.user);
 
-   useEffect(() => {
-      if (token) {
-         localStorage.setItem("token", token);
-      }
-   }, [token]);
    const [isOpen, setIsOpen] = useState(false);
    return (
       <div>

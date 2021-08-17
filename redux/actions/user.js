@@ -1,5 +1,6 @@
-import { GETUSER, GETLAST10, CHECKTOKEN } from "../../gql/user/query";
+import { GETUSER, GETLAST10, CHECKTOKEN, LMAO } from "../../gql/user/query";
 import { LOGIN, SIGNUP } from "../../gql/user/mutation";
+import { gql } from "@apollo/client";
 
 import getClient from "../../apollo/apollo";
 export const GET_USER = "GET_USER";
@@ -34,7 +35,6 @@ export const getLast10 = (id) => {
          })
          .then((res) => {
             if (res.data) {
-               console.log(res.data);
                dispatch({
                   type: GET_LAST10,
                   last10: res.data.getLast10Transactions,
@@ -104,9 +104,9 @@ export const login = (email, password) => {
          });
    };
 };
-export const checkToken = (token) => {
-   console.log("checkliyorum1", token);
 
+export const checkToken = (token) => {
+   console.log("checking");
    return async (dispatch) => {
       getClient()
          .query({
@@ -116,18 +116,17 @@ export const checkToken = (token) => {
             },
          })
          .then((res) => {
-            console.log("checkliyorum", res.data.checkToken);
             dispatch({
                type: LOGIN_USER,
                result: { token, user: res.data.checkToken },
             });
          })
          .catch((err) => {
-            console.log(err);
             return err;
          });
    };
 };
+
 export const logoutUser = () => {
    return { type: LOGOUT };
 };

@@ -1,10 +1,24 @@
 const jwt = require("jsonwebtoken");
-async function me(parent, args, context, info) {
-   const { userId } = context;
+const { getUserId } = require("../utils.js");
 
+async function me(parent, args, context, info) {
+   console.log("me ");
    return await context.prisma.user.findUnique({
       where: {
          id: 2,
+      },
+   });
+}
+async function checkToken(parent, args, context, info) {
+   console.log("backend checking");
+   const token =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyOTIxNDczOX0.qqhT-_8eo9ZEOevubnoXMiTsn-a_4zvikn6ZVUmkfSs";
+   const userId = getUserId(token);
+   console.log("userıd", userId);
+
+   return await context.prisma.user.findUnique({
+      where: {
+         id: userId,
       },
    });
 }
@@ -54,7 +68,7 @@ async function transaction(parent, args, context, info) {
 }
 
 //
-async function getLast10Transactions(parent, args, context, inof) {
+async function getLast10Transactions(parent, args, context, info) {
    const asSender = await context.prisma.transaction.findMany({
       where: {
          senderId: 1,
@@ -75,21 +89,6 @@ async function getLast10Transactions(parent, args, context, inof) {
    return c;
 }
 
-//
-async function checkToken(parent, args, context, info) {
-   const token = args.token;
-   const decoded = jwt.verify(token, "prisma");
-
-   const user = await context.prisma.user.findUnique({
-      where: {
-         id: decoded.userId,
-      },
-   });
-   if (!user) {
-      throw new Error("USER_NOT_FOUND");
-   }
-   return user;
-}
 module.exports = {
    me,
    users,

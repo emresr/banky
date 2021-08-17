@@ -20,7 +20,7 @@ import { transaction } from "../backend/src/resolvers/query";
 function HomePage() {
    const dispatch = useDispatch();
    const user = useSelector((state) => state.user);
-   console.log("user", user);
+   // console.log("user", user);
    useEffect(() => {
       dispatch(getLast10(1));
    }, []);
@@ -38,7 +38,6 @@ function HomePage() {
             })
       );
 
-   console.log(data);
    return (
       <div>
          <Head>

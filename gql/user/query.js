@@ -41,32 +41,9 @@ const GETLAST10 = gql`
    }
 `;
 const CHECKTOKEN = gql`
-   query CheckToken($token: String!) {
-      checkToken(token: $token) {
+   query {
+      me {
          id
-         email
-         total
-         accounts {
-            id
-            iban
-            balance
-            cards {
-               id
-            }
-            cards {
-               id
-            }
-            sended {
-               createdAt
-               amount
-               newSenderBalance
-            }
-            received {
-               createdAt
-               amount
-            }
-         }
       }
    }
 `;
-export { GETUSER, GETLAST10, CHECKTOKEN };
