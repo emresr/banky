@@ -22,12 +22,12 @@ const Sidebar = () => {
                <h1 className="font-bold text-xl">$ 512,25 </h1>
             </div>{" "}
          </div>
-         <ul className="md:space-y-3 mt-4 md:block flex overflow-x-auto space-x-2 ">
+         <ul className="md:space-y-3 mt-4 md:block flex overflow-x-auto text-white font-black">
             <li className=" flex justify-center ">
                <div className="p-2 bg-blue-500 hover:bg-blue-400 w-full rounded-lg transition  flex justify-center cursor-pointer">
                   {" "}
-                  <div className="flex space-x-2">
-                     <AiOutlineBank className="my-auto" size={24} />
+                  <div className="flex space-x-2 ">
+                     <IoWalletOutline className="my-auto" size={24} />
                      <Link href="/">
                         <h1 className="font-bold my-auto">General Look</h1>
                      </Link>

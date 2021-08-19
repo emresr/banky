@@ -25,7 +25,6 @@ const userReducer = (state = initialState, action) => {
       case GET_LAST10:
          return { ...state, last10: action.last10 };
       case LOGIN_USER:
-         console.log("lmao");
          Cookies.set("token", action.result.token);
          return {
             ...state,

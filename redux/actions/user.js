@@ -43,18 +43,21 @@ export const getLast10 = (id) => {
          });
    };
 };
-export const signup = (username, email, password) => {
+export const signup = (name, email, password) => {
+   console.log("asdksd");
    return async (dispatch, getState) => {
-      getClient()
+      await getClient()
          .mutate({
             mutation: SIGNUP,
             variables: {
-               username: username,
-               email: email,
-               password: password,
+               name,
+               email,
+               password,
             },
          })
          .then((res) => {
+            console.log(res.data);
+            localStorage.setItem("token", res.data.signup.token);
             if (res.data) {
                return dispatch({
                   type: LOGIN_USER,
@@ -67,10 +70,10 @@ export const signup = (username, email, password) => {
             });
          })
          .catch((err) => {
+            console.log(err);
             return dispatch({
                type: REGISTER_ERROR,
-               result:
-                  "kullanıcı adı, e-posta veya telefon numarası kayıtlıdır.",
+               result: " email already registered.",
             });
          });
    };
@@ -79,7 +82,6 @@ export const signup = (username, email, password) => {
 export const login = (email, password) => {
    return async (dispatch, getState) => {
       dispatch({ type: LOGIN_ERROR, result: "" });
-      console.log(email, password);
       getClient()
          .mutate({
             mutation: LOGIN,
@@ -90,6 +92,7 @@ export const login = (email, password) => {
          })
          .then((res) => {
             console.log(res);
+            localStorage.setItem("token", res.data.login.token);
             if (res.data) {
                dispatch({ type: LOGIN_USER, result: res.data.login });
             } else {
@@ -104,9 +107,7 @@ export const login = (email, password) => {
          });
    };
 };
-
 export const checkToken = (token) => {
-   console.log("checking");
    return async (dispatch) => {
       getClient()
          .query({
@@ -126,7 +127,6 @@ export const checkToken = (token) => {
          });
    };
 };
-
 export const logoutUser = () => {
    return { type: LOGOUT };
 };

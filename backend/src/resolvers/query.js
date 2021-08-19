@@ -10,17 +10,17 @@ async function me(parent, args, context, info) {
    });
 }
 async function checkToken(parent, args, context, info) {
-   console.log("backend checking");
-   const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyOTIxNDczOX0.qqhT-_8eo9ZEOevubnoXMiTsn-a_4zvikn6ZVUmkfSs";
-   const userId = getUserId(token);
-   console.log("userıd", userId);
+   console.log(args.token);
+   const userId = getUserId(args.token);
+   console.log("userId", userId);
 
-   return await context.prisma.user.findUnique({
+   const result = await context.prisma.user.findUnique({
       where: {
          id: userId,
       },
    });
+   console.log("result", result);
+   return result;
 }
 async function users(parent, args, context, info) {
    return await context.prisma.user.findMany();
