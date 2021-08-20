@@ -11,7 +11,7 @@ import Head from "next/head";
 
 const Accounts = () => {
    const dispatch = useDispatch();
-   const accounts = useSelector((state) => state.user);
+   const accounts = useSelector((state) => state.user.user.accounts);
    console.log("lmao", accounts);
 
    return (
@@ -28,8 +28,7 @@ const Accounts = () => {
                      <h1 className="text-3xl">Accounts</h1>
                      <div className="space-y-6 mt-5 mx-3">
                         {accounts &&
-                           accounts.user.accounts &&
-                           accounts.user.accounts.map((account) => (
+                           accounts.map((account) => (
                               <div
                                  key={account.id}
                                  className="border-gray-700 bg-gray-200 p-2 rounded-lg space-y-4"
